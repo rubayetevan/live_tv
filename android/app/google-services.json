@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "154097527771",
+    "firebase_url": "https://live-tv-15f2e.firebaseio.com",
+    "project_id": "live-tv-15f2e",
+    "storage_bucket": "live-tv-15f2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154097527771:android:61e97505c713a9060455fe",
+        "android_client_info": {
+          "package_name": "live.ebox.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154097527771-ns8nj07i6qhlqdea0tuo7el8mtfh13dp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "live.ebox.tv",
+            "certificate_hash": "2ae80286dc0a059b9c7d795d09a6d132e5d25862"
+          }
+        },
+        {
+          "client_id": "154097527771-237c2ffs516888i7rbbtaceitf06mpcf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyoyEg17Qw-93Auc2vEvhKIcOpNZiBx0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154097527771-237c2ffs516888i7rbbtaceitf06mpcf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
