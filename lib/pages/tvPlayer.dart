@@ -1,10 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:screen/screen.dart';
 import 'package:video_player/video_player.dart';
-
-
-
 
 class TVPlayerPage extends StatefulWidget {
   final String url;
@@ -17,6 +16,7 @@ class TVPlayerPage extends StatefulWidget {
 
 class _TVPlayerPageState extends State<TVPlayerPage> {
   VideoPlayerController _controller;
+  bool showAppBar = true;
 
   @override
   void initState() {
@@ -33,6 +33,11 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
         setState(() {
           _controller.play();
           Screen.keepOn(true);
+          Timer(Duration(seconds: 3), () {
+            setState(() {
+              showAppBar = false;
+            });
+          });
         });
       });
   }
@@ -40,15 +45,40 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: showAppBar ? AppBar() : null,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: _controller.value.initialized
-            ? /*AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        )*/VideoPlayer(_controller)
-            : Container(),
+            ? GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (!showAppBar) {
+                      showAppBar = true;
+                      Timer(Duration(seconds: 3), () {
+                        setState(() {
+                          showAppBar = false;
+                        });
+                      });
+                    } else {
+                      showAppBar = false;
+                    }
+                  });
+                },
+                child: AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                ),
+              )
+            : Container(
+                child: Center(
+                  child: Container(
+                    height: 48,
+                    width: 48,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -63,6 +93,5 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
       DeviceOrientation.portraitDown,
     ]);
     super.dispose();
-
   }
 }
