@@ -47,16 +47,14 @@ class HomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-                                  height: 72,
-                                  width: 72,
+                                  height: 64,
+                                  width: 64,
                                   child: CachedNetworkImage(
                                     imageUrl: document['logo'],
                                     imageBuilder: (context, imageProvider) => Container(
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
+                                          image: imageProvider, fit: BoxFit.contain),
                                       ),
                                     ),
                                     placeholder: (context, url) => LinearProgressIndicator(),
@@ -67,6 +65,9 @@ class HomePage extends StatelessWidget {
                                   height: 3,
                                 ),
                                 Text(document['name']),
+                                SizedBox(
+                                  height: 5,
+                                ),
                               ],
                             ),
                           ),
