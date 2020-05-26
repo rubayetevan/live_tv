@@ -27,7 +27,7 @@ jobs:
       with:
         name: gitversion
         path: version.txt
-  build:
+  ios:
     name: Build app and Create ios release
     needs: [ version ]
     runs-on: macOS-latest
