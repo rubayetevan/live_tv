@@ -36,7 +36,8 @@ class HomePage extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(
                                 FocusManager.instance.primaryFocus.context,
-                                MaterialPageRoute(builder: (context) => TVPlayerPage(document['url'])),
+                                MaterialPageRoute(
+                                    builder: (context) => TVPlayerPage(document['url'], document['name'])),
                               );
                             },
                             color: Colors.white,

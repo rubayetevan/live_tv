@@ -7,8 +7,9 @@ import 'package:video_player/video_player.dart';
 
 class TVPlayerPage extends StatefulWidget {
   final String url;
+  final String name;
 
-  TVPlayerPage(this.url);
+  TVPlayerPage(this.url, this.name);
 
   @override
   _TVPlayerPageState createState() => _TVPlayerPageState();
@@ -16,7 +17,7 @@ class TVPlayerPage extends StatefulWidget {
 
 class _TVPlayerPageState extends State<TVPlayerPage> {
   VideoPlayerController _controller;
-  bool showAppBar = true;
+  bool _showAppBar = true;
 
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
           Screen.keepOn(true);
           Timer(Duration(seconds: 3), () {
             setState(() {
-              showAppBar = false;
+              _showAppBar = false;
             });
           });
         });
@@ -45,7 +46,11 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: showAppBar ? AppBar() : null,
+      appBar: _showAppBar
+          ? AppBar(
+              title: Text(widget.name),
+            )
+          : null,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -53,15 +58,15 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
             ? GestureDetector(
                 onTap: () {
                   setState(() {
-                    if (!showAppBar) {
-                      showAppBar = true;
+                    if (!_showAppBar) {
+                      _showAppBar = true;
                       Timer(Duration(seconds: 3), () {
                         setState(() {
-                          showAppBar = false;
+                          _showAppBar = false;
                         });
                       });
                     } else {
-                      showAppBar = false;
+                      _showAppBar = false;
                     }
                   });
                 },
@@ -92,6 +97,7 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     super.dispose();
   }
 }
