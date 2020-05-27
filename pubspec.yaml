@@ -25,9 +25,10 @@ dependencies:
   cached_network_image:
   cupertino_icons:
   firebase_core:
-  video_player:
   cloud_firestore:
   screen:
+  video_player:
+  video_player_web_hls:
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import 'tvPlayer.dart';
@@ -49,8 +50,9 @@ class HomePage extends StatelessWidget {
                                 Container(
                                   height: 64,
                                   width: 64,
-                                  child: CachedNetworkImage(
-                                    imageUrl: document['logo'],
+                                  child: (!kIsWeb)
+                                      ? CachedNetworkImage(
+                                          imageUrl: document['logo'],
                                     imageBuilder: (context, imageProvider) => Container(
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
@@ -59,7 +61,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     placeholder: (context, url) => LinearProgressIndicator(),
                                     errorWidget: (context, url, error) => Icon(Icons.error),
-                                  ),
+                                  ) : Image.network(document['logo']),
                                 ),
                                 SizedBox(
                                   height: 3,
