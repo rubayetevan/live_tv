@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance.collection('channels').orderBy('name').snapshots(),
+            stream: FirebaseFirestore.instance.collection('channels').orderBy('name').snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) return Text('Error: ${snapshot.error}');
               switch (snapshot.connectionState) {
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                       crossAxisSpacing: 3,
                       mainAxisSpacing: 3,
                       crossAxisCount: (MediaQuery.of(context).size.width / 120.0).round(),
-                      children: snapshot.data.documents.map((DocumentSnapshot document) {
+                      children: snapshot.data.docs.map((DocumentSnapshot document) {
                         return Padding(
                           padding: EdgeInsets.all(5.0),
                           child: RaisedButton(
@@ -48,8 +48,8 @@ class HomePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-                                  height: 64,
-                                  width: 64,
+                                  height: 90,
+                                  width: 90,
                                   child: (!kIsWeb)
                                       ? CachedNetworkImage(
                                           imageUrl: document['logo'],
@@ -62,13 +62,6 @@ class HomePage extends StatelessWidget {
                                     placeholder: (context, url) => LinearProgressIndicator(),
                                     errorWidget: (context, url, error) => Icon(Icons.error),
                                   ) : Image.network(document['logo']),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(document['name']),
-                                SizedBox(
-                                  height: 5,
                                 ),
                               ],
                             ),

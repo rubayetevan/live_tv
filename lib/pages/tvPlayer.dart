@@ -54,7 +54,7 @@ class _TVPlayerPageState extends State<TVPlayerPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: _controller.value.initialized
+        child: _controller.value.isInitialized
             ? GestureDetector(
                 onTap: () {
                   setState(() {
